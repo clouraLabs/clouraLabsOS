@@ -181,9 +181,9 @@ cat > "$CONFIG_DIR/flake.nix" <<EOF
   description = "NixOS configuration for $HOSTNAME";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-25.05";
     home-manager = {
-      url = "github:nix-community/home-manager";
+      url = "github:nix-community/home-manager/release-25.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
@@ -255,8 +255,7 @@ $([ "$INSTALL_VIRTUALIZATION" = true ] && echo "    ../../modules/virtualization
     htop
   ];
 
-  # Enable sound
-  sound.enable = true;
+  # Enable sound with PipeWire
   hardware.pulseaudio.enable = false;
   security.rtkit.enable = true;
   services.pipewire = {
@@ -266,7 +265,7 @@ $([ "$INSTALL_VIRTUALIZATION" = true ] && echo "    ../../modules/virtualization
     pulse.enable = true;
   };
 
-  system.stateVersion = "24.05";
+  system.stateVersion = "25.05";
 }
 EOF
 print_success "Created configuration.nix"
@@ -489,7 +488,7 @@ cat > "$CONFIG_DIR/users/$USERNAME/home.nix" <<EOF
 {
   home.username = "$USERNAME";
   home.homeDirectory = "/home/$USERNAME";
-  home.stateVersion = "24.05";
+  home.stateVersion = "25.05";
 
   programs.home-manager.enable = true;
 

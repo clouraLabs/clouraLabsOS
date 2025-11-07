@@ -3,7 +3,7 @@
 {
   home.username = "omarchy";
   home.homeDirectory = "/home/omarchy";
-  home.stateVersion = "24.05";
+  home.stateVersion = "25.05";
 
   programs.home-manager.enable = true;
 
@@ -23,6 +23,7 @@
 
     # Data tools
     csvtool
+
     miller  # CSV/JSON processor
 
     # Productivity
@@ -74,7 +75,7 @@
   programs.zsh = {
     enable = true;
     enableCompletion = true;
-    autosuggestion.enable = true;
+    autosuggestions.enable = true;
     syntaxHighlighting.enable = true;
 
     shellAliases = {
@@ -136,8 +137,6 @@
     '';
   };
 
-
-
   # Terminal emulator
   programs.kitty = {
     enable = true;
@@ -184,24 +183,9 @@
     '';
   };
 
-  # Zed editor configuration
-  programs.zed-editor = {
-    enable = true;
-    extensions = [ "r" "python" "sql" "nix" ];
-    userSettings = {
-      theme = "Dracula";
-      buffer_font_size = 14;
-      buffer_font_family = "FiraCode Nerd Font";
-      ui_font_size = 14;
-      terminal = {
-        font_size = 13;
-        font_family = "FiraCode Nerd Font";
-      };
-      vim_mode = true;  # Enable vim keybindings
-      autosave = "on_focus_change";
-      format_on_save = "off";
-    };
-  };
+  # Zed editor - configured manually via GUI
+  # Note: Zed doesn't have declarative home-manager config yet
+  # Install via: home.packages includes zed-editor from system packages
 
   # File manager
   programs.nnn = {

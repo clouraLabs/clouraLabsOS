@@ -2,8 +2,7 @@
 
 {
   imports = [
-    ./hardware-configuration.nix
-    ../../modules/system.nix
+    # ./hardware-configuration.nix  # Generated during installation
     ../../modules/data-science.nix
   ];
 
@@ -41,8 +40,7 @@
     chromium
   ];
 
-  # Enable sound
-  sound.enable = true;
+  # Enable sound with PipeWire
   hardware.pulseaudio.enable = false;
   security.rtkit.enable = true;
   services.pipewire = {
@@ -84,5 +82,5 @@
     ];
   };
 
-  system.stateVersion = "24.05";
+  system.stateVersion = "25.05";
 }

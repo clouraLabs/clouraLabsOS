@@ -3,7 +3,6 @@
 {
   imports = [
     ./hardware-configuration.nix
-    ../../modules/system.nix
     # Add more module imports here
   ];
 
@@ -40,8 +39,7 @@
     neofetch
   ];
 
-  # Enable sound with pipewire
-  sound.enable = true;
+  # Enable sound with PipeWire
   hardware.pulseaudio.enable = false;
   security.rtkit.enable = true;
   services.pipewire = {
@@ -65,5 +63,5 @@
     allowedUDPPorts = [ ];
   };
 
-  system.stateVersion = "24.05";
+  system.stateVersion = "25.05";
 }
