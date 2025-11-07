@@ -195,8 +195,7 @@ cat > "$CONFIG_DIR/flake.nix" <<EOF
         system = "x86_64-linux";
         specialArgs = { inherit inputs; };
         modules = [
-          ./hosts/$HOSTNAME/configuration.nix
-          ./hosts/$HOSTNAME/hardware-configuration.nix
+          ./configuration.nix
 $([ "$INSTALL_HOME_MANAGER" = true ] && cat <<INNER
           home-manager.nixosModules.home-manager
           {
@@ -269,7 +268,19 @@ $([ "$INSTALL_VIRTUALIZATION" = true ] && echo "    ../../modules/virtualization
   system.stateVersion = "25.05";
 }
 EOF
-print_success "Created configuration.nix"
+print_success "Created hosts/$HOSTNAME/configuration.nix"
+
+# Create top-level configuration entry that nixos-rebuild references
+cat > "$CONFIG_DIR/configuration.nix" <<EOF
+{ config, pkgs, inputs, ... }:
+
+{
+  imports = [
+    ./hosts/$HOSTNAME/configuration.nix
+  ];
+}
+EOF
+print_success "Created top-level configuration.nix"
 
 # Create system module
 cat > "$CONFIG_DIR/modules/system.nix" <<EOF
